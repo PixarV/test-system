@@ -18,13 +18,4 @@ public class App {
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
     }
-
-    @Bean
-    public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
-                .paths(PathSelectors.any())
-                .build();
-    }
 }
