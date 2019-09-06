@@ -1,5 +1,5 @@
 .gradle
-/build/
+build/
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -11,5 +11,5 @@ gradle-app.setting
 .gradletasknamecache
 
 #TestSystem project specific:
-/.idea/
-/TestSystem.iml
+.idea/
+*.iml
