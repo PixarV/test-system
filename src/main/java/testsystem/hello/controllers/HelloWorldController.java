@@ -1,9 +1,9 @@
-package testSystem.hello.controllers;
+package testsystem.hello.controllers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import testSystem.hello.services.HelloWorldService;
+import testsystem.hello.services.HelloWorldService;
 
 @RestController
 @AllArgsConstructor
