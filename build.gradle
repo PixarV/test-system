@@ -6,19 +6,14 @@ plugins {
     id 'checkstyle'
 }
 
-<<<<<<< Updated upstream
 apply from: rootProject.file('gradle/install-git-hooks.gradle')
 
 group 'com.tsys'
 version '0.0.1'
 
-=======
-//apply plugin: 'checkstyle'
-
 group 'org.neorg'
 version '1.0-SNAPSHOT'
 
->>>>>>> Stashed changes
 checkstyle {
     showViolations = true
     toolVersion '8.20'
@@ -38,10 +33,7 @@ repositories {
 }
 
 sourceCompatibility = JavaVersion.VERSION_11
-<<<<<<< Updated upstream
 targetCompatibility = JavaVersion.VERSION_11
-=======
->>>>>>> Stashed changes
 
 dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.1.7.RELEASE'

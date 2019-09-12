@@ -1,0 +1,9 @@
+task installGitHooks(type: Copy) {
+    from new File(rootProject.rootDir, 'pre-push')
+    into { new File(rootProject.rootDir, '.git/hooks') }
+
+    from new File(rootProject.rootDir, 'prepare-commit-msg')
+    into { new File(rootProject.rootDir, '.git/hooks') }
+}
+
+build.dependsOn installGitHooks
