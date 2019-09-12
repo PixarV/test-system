@@ -3,16 +3,34 @@ plugins {
     id 'idea'
     id 'org.springframework.boot' version '2.1.7.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'checkstyle'
 }
+
+apply from: rootProject.file('gradle/install-git-hooks.gradle')
 
 group 'com.tsys'
 version '0.0.1'
+
+checkstyle {
+    showViolations = true
+    toolVersion '8.20'
+    maxWarnings = 0
+    maxErrors = 0
+    configFile file("etc/style/google_checks.xml")
+}
+checkstyleMain {
+    source = 'src/main/java'
+}
+checkstyleTest {
+    source = 'src/test/java'
+}
 
 repositories {
     mavenCentral()
 }
 
 sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
 
 dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.1.7.RELEASE'
