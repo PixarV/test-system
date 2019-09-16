@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# This script is designed in order to produce lightweight prefixing of commit message
+# depending on branch name.
+# by Roman Gorbatenko RTLabs
+
+if [ -z "$BRANCHES_TO_SKIP" ]; then
+  BRANCHES_TO_SKIP=(master develop dev)
+fi
+
+LONG_BRANCH_NAME=$(git symbolic-ref --short HEAD)
+SHORT_BRANCH_NAME="${LONG_BRANCH_NAME##*/}"
+
+# Branch name prefix options that define the main purpose
+FEATURE='feature'
+BUGFIX='bugfix'
+
+COUNT_BRANCH_EXCLUDED=$(printf "%s\n" "${BRANCHES_TO_SKIP[*]}" | grep -c "^$SHORT_BRANCH_NAME$")
+COUNT_BRANCH_IN_COMMIT=$(grep -c $SHORT_BRANCH_NAME $1)
+
+if [ -n "$SHORT_BRANCH_NAME" ] && ! [[ $COUNT_BRANCH_EXCLUDED -eq 1 ]] && ! [[ $COUNT_BRANCH_IN_COMMIT -ge 1 ]]; then
+if [ -z "${LONG_BRANCH_NAME##*$FEATURE*}" ]; then
+  sed -i.bak -e "1s/^/[NF] $SHORT_BRANCH_NAME /" $1
+fi
+if [ -z "${LONG_BRANCH_NAME##*$BUGFIX*}" ]; then
+  sed -i.bak -e "1s/^/[BF] $SHORT_BRANCH_NAME /" $1
+fi
+fi
